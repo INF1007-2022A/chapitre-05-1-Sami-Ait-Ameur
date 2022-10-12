@@ -53,14 +53,23 @@ def use_continue() -> None:
 
 
 def verify_ages(groups: List[List[int]]) -> List[bool]:
-    for i in range(len(groups)):
-        if 3 < len(groups[i]) >= 10:
-            groups[i] = False
-        if groups[i].sort()[0] < 18:
-            groups[i] = False
+    verif_groups = []
+    for group in groups:
+        if len(group) > 10 or len(group) <= 3:
+            verif_groups.append(False)
+            continue
+        if 25 in group:
+            verif_groups.append(True)
+            continue
+        if max(group) > 70 and 50 in group:
+            verif_groups.append(False)
+            continue
+        if min(group) < 18:
+            verif_groups.append(False)
+        else:
+            verif_groups.append(True)
 
-    return []
-
+    return verif_groups
 
 def main() -> None:
     number = -4.325
